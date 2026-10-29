@@ -1,0 +1,15 @@
+# извлечённые кадры (восстанавливаются из drop.mp4 одной командой ffmpeg)
+analysis/frames/
+
+# собранная серверная версия (index.html + app.js) — артефакт сборки
+analysis/deploy/
+
+# python
+__pycache__/
+*.pyc
+*.npy
+
+# системное
+Thumbs.db
+desktop.ini
+.DS_Store
