@@ -29,6 +29,15 @@ new_html = (
     + f'<script src="app.js?v={js_ver}"></script>'
     + html[m.end():]
 )
+# CSP сайта: default-src 'self' без media-src. Поэтому в серверной версии
+# аудио подключается файлом audio.wav, а не data:-URI (иначе <audio> блокируется).
+new_html = re.sub(
+    r'(<audio\b[^>]*?)\ssrc="data:audio/wav;base64,[^"]+"',
+    r'\1 src="audio.wav"',
+    new_html,
+    flags=re.S,
+)
+assert 'src="data:audio/wav' not in new_html, "data:-аудио осталось в index.html"
 (OUT / "index.html").write_text(new_html, encoding="utf-8")
 
 EXTRA = [
