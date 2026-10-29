@@ -43,12 +43,19 @@ if h.exists():
 else:
     errors.append("report.html не найден — запустите make_html.py")
 
+for name in ("favicon.ico", "favicon.svg", "favicon-32.png",
+             "favicon-192.png", "apple-touch-icon.png"):
+    check((A / name).exists(), f"нет {name} — запустите make_favicon.py")
+if h.exists():
+    check("favicon.svg" in html, "в report.html нет ссылки на favicon")
+
 school = A / "school_physics.html"
 if school.exists():
     sh = school.read_text(encoding="utf-8")
     check("@@" not in sh, "в school_physics.html остались незаменённые @@...@@")
     check('class="toc"' in sh, "в school_physics.html нет содержания")
     check('id="s1"' in sh, "в school_physics.html нет якорей разделов")
+    check("favicon.svg" in sh, "в school_physics.html нет ссылки на favicon")
 else:
     errors.append("school_physics.html не найден — запустите make_school_html.py")
 

@@ -300,6 +300,7 @@
 | `final_analysis.py` | весь код обработки (детекция, калибровка, подгонка, графики) |
 | `make_html.py` | сборка интерактивного HTML |
 | `make_school_html.py` | сборка school_physics.html из school_physics.md |
+| `make_favicon.py` | генерация favicon.ico, favicon.svg и PNG-размеров |
 | `meta.json` | координаты мяча по X для маркера + `x_valid` (прямая детекция/интерполяция) |
 | `check_velocity.py` | сверка скорости по конечным разностям |
 | `selftest.py` | быстрая проверка инвариантов и собранного HTML |

@@ -45,8 +45,10 @@ EXTRA = [
     "school_physics.html", "AUDIT.md",
     "trajectory.png", "key_frames.png", "contact_sheet.png", "audio.wav",
     "meta.json", "final_analysis.py", "make_html.py", "make_report.py",
-    "make_school_html.py", "meta.py", "check_velocity.py", "selftest.py",
-    "split_for_server.py",
+    "make_school_html.py", "make_favicon.py", "meta.py", "check_velocity.py",
+    "selftest.py", "split_for_server.py",
+    "favicon.ico", "favicon.svg", "favicon-16.png", "favicon-32.png",
+    "favicon-192.png", "favicon-512.png", "apple-touch-icon.png",
 ]
 for name in EXTRA:
     shutil.copy2(A / name, OUT / name)

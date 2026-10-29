@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<title>physics_drop — падение и отскок мяча</title>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#111826"/><stop offset="1" stop-color="#22304d"/>
+  </linearGradient>
+  <radialGradient id="ball" cx="38%" cy="30%" r="78%">
+    <stop offset="0" stop-color="#fb7185"/><stop offset=".55" stop-color="#e11d48"/>
+    <stop offset="1" stop-color="#be123c"/>
+  </radialGradient>
+</defs>
+<rect x="0" y="0" width="512" height="512" rx="112" fill="url(#bg)"/>
+<rect x="5" y="5" width="502" height="502" rx="109" fill="none" stroke="#ffffff" stroke-opacity=".13" stroke-width="3.5"/>
+<path d="M107 89 V413" stroke="#67e8f9" stroke-width="11" stroke-linecap="round"/>
+<path d="M107 109 H155 M107 160 H136 M107 211 H155 M107 262 H136 M107 313 H155 M107 364 H136 M107 413 H155"
+      stroke="#67e8f9" stroke-width="8" stroke-linecap="round"/>
+<path d="M235 404 H453" stroke="#10b981" stroke-width="12" stroke-linecap="round"/>
+<path d="M124 98 C190 150 250 234 320 305 C380 250 408 193 429 129"
+      fill="none" stroke="#93c5fd" stroke-width="8" stroke-linecap="round" stroke-dasharray="10 7" opacity=".9"/>
+<path d="M429 129 L412 151 H446 Z" fill="#10b981"/>
+<circle cx="320" cy="305" r="85" fill="#ffffff" fill-opacity=".92"/>
+<circle cx="320" cy="305" r="76" fill="url(#ball)"/>
+<ellipse cx="290" cy="276" rx="24" ry="19" fill="#fff" fill-opacity=".85" transform="rotate(-28 290 276)"/>
+</svg>

@@ -47,6 +47,8 @@ analysis/
 ├── make_report.py            сборка report.md
 ├── make_html.py              сборка интерактивного report.html
 ├── make_school_html.py       сборка school_physics.html из school_physics.md
+├── make_favicon.py           favicon: мяч, шкала и траектория отскока
+├── favicon.ico / favicon.svg / favicon-*.png
 ├── meta.py                   координаты мяча по X по кадрам
 ├── check_velocity.py         сверка скорости по конечным разностям
 ├── selftest.py               быстрая проверка инвариантов и собранного HTML

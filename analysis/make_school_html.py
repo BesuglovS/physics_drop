@@ -90,6 +90,10 @@ def main():
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Методический конспект: темы школьной физики 7–11 классов на одном видео падения мяча — свободное падение, g, отскок, импульс, энергия, звук, оптика.">
 <meta name="theme-color" content="#1d2740">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>{html.escape(title)} — методический конспект</title>
 <style>
 :root{{
