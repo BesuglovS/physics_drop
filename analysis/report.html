@@ -182,7 +182,13 @@ tr.hide{display:none}
 
 ol.concl{margin:0;padding-left:22px} ol.concl li{margin-bottom:10px}
 .files{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
-.file{border:1px solid var(--line);border-radius:12px;padding:11px 13px;background:#fbfcfe;font-size:14px}
+.file{border:1px solid var(--line);border-radius:12px;padding:11px 34px 11px 13px;background:#fbfcfe;font-size:14px;
+  display:block;text-align:left;text-decoration:none;color:inherit;cursor:pointer;font-family:inherit;
+  position:relative;transition:.15s;width:100%}
+a.file:hover,button.file:hover{border-color:#b9c6dd;background:#f3f8ff;transform:translateY(-1px);
+  box-shadow:0 8px 18px -12px #1d2740aa}
+a.file:after,button.file:after{content:"↓";position:absolute;right:12px;top:50%;transform:translateY(-50%);
+  color:var(--blue);font-weight:800;font-size:15px;opacity:.5}
 .file b{display:block;font-family:"JetBrains Mono",Consolas,monospace;font-size:13px;color:var(--blue)}
 .file span{color:var(--muted);font-size:13px}
 .imp{margin-top:16px;background:#f8fafd;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
@@ -987,19 +993,28 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:10px 0 0}
 
   <section>
     <h2><span class="n">10</span>Файлы</h2>
+    <p class="muted" style="font-size:13.5px;margin:0 0 14px">Клик по карточке — скачивание файла.
+      Отчёт и видео отдаются прямо из страницы, остальные файлы лежат рядом с ней.</p>
     <div class="files">
-      <div class="file"><b>report.html</b><span>этот отчёт (автономный, интерактивный)</span></div>
-      <div class="file"><b>report.md</b><span>та же версия в Markdown</span></div>
-      <div class="file"><b>frames.csv</b><span>покадровая таблица, 109 строк</span></div>
-      <div class="file"><b>trajectory.png</b><span>статичный график высоты и скорости</span></div>
-      <div class="file"><b>key_frames.png</b><span>12 ключевых кадров</span></div>
-      <div class="file"><b>contact_sheet.png</b><span>контактный лист</span></div>
-      <div class="file"><b>frames/</b><span>109 исходных кадров PNG</span></div>
-      <div class="file"><b>final_analysis.py</b><span>детекция, калибровка, подгонка</span></div>
-      <div class="file"><b>make_html.py</b><span>сборка этого отчёта</span></div>
-      <div class="file"><b>check_velocity.py</b><span>сверка скорости по кадрам</span></div>
-      <div class="file"><b>audio.wav</b><span>звук для проверки ударов</span></div>
+      <button class="file" data-act="report"><b>report.html</b><span>этот отчёт целиком, автономный</span></button>
+      <button class="file" data-act="video"><b>drop.mp4</b><span>исходное видео, 1,2 МБ</span></button>
+      <a class="file" href="report.md" download><b>report.md</b><span>та же версия в Markdown</span></a>
+      <a class="file" href="frames.csv" download><b>frames.csv</b><span>покадровая таблица, 109 строк</span></a>
+      <a class="file" href="trajectory.png" download><b>trajectory.png</b><span>график высоты и скорости</span></a>
+      <a class="file" href="key_frames.png" download><b>key_frames.png</b><span>12 ключевых кадров</span></a>
+      <a class="file" href="contact_sheet.png" download><b>contact_sheet.png</b><span>раскадровка всех кадров</span></a>
+      <a class="file" href="audio.wav" download><b>audio.wav</b><span>звук для проверки ударов</span></a>
+      <a class="file" href="meta.json" download><b>meta.json</b><span>координаты мяча по X</span></a>
+      <a class="file" href="final_analysis.py" download><b>final_analysis.py</b><span>детекция, калибровка, подгонка</span></a>
+      <a class="file" href="make_html.py" download><b>make_html.py</b><span>сборка этого отчёта</span></a>
+      <a class="file" href="make_report.py" download><b>make_report.py</b><span>сборка report.md</span></a>
+      <a class="file" href="meta.py" download><b>meta.py</b><span>координаты мяча по X по кадрам</span></a>
+      <a class="file" href="check_velocity.py" download><b>check_velocity.py</b><span>сверка скорости по кадрам</span></a>
+      <a class="file" href="split_for_server.py" download><b>split_for_server.py</b><span>сборка версии для сервера</span></a>
     </div>
+    <p class="muted" style="font-size:12.5px;margin:12px 0 0">Каталог <code>frames/</code> (109 исходных PNG, ~100 МБ)
+      не выкладывается — он за секунды восстанавливается из drop.mp4 командой
+      <code>ffmpeg -i drop.mp4 -vsync 0 frames/f_%03d.png</code>.</p>
   </section>
 
   <section id="download">
@@ -1294,26 +1309,33 @@ function saveFile(data, name, type){
   document.body.appendChild(a); a.click(); a.remove();
   setTimeout(()=>URL.revokeObjectURL(a.href), 2000);
 }
-document.getElementById('dlHtml').onclick = function(){
+function downloadReport(){
   const clone = document.documentElement.cloneNode(true);
   const ch = clone.querySelector('#chart'); if(ch) ch.innerHTML='';
   const note = clone.querySelector('#dlNote'); if(note) note.textContent='';
   saveFile('<!DOCTYPE html>\n' + clone.outerHTML, 'drop-ball-analysis.html', 'text/html;charset=utf-8');
-  document.getElementById('dlNote').textContent = 'Файл сохранён';
-};
-document.getElementById('dlCsv').onclick = function(){
+  const noteEl = document.getElementById('dlNote'); if(noteEl) noteEl.textContent = 'Файл сохранён';
+}
+function downloadCsv(){
   const head = 'кадр;t_с;y_пикс;Y_см_по_шкале;h_см_над_матом;v_м_с;фаза';
   const num = (x,d) => x==null ? '' : x.toFixed(d).replace('.',',');
   const lines = ROWS.map(r => [r.f, num(r.t,3), num(r.y,1), num(r.Y,1), num(r.h,1), num(r.v,2), r.ph].join(';'));
   saveFile('\uFEFF' + head + '\n' + lines.join('\n'), 'drop-ball-frames.csv', 'text/csv;charset=utf-8');
-  document.getElementById('dlNote').textContent = 'Файл сохранён';
-};
-document.getElementById('dlVideo').onclick = function(){
+  const noteEl = document.getElementById('dlNote'); if(noteEl) noteEl.textContent = 'Файл сохранён';
+}
+function downloadVideo(){
   const bin = atob(VIDEO), n = bin.length, arr = new Uint8Array(n);
   for(let i=0;i<n;i++) arr[i] = bin.charCodeAt(i);
   saveFile(new Blob([arr], {type:'video/mp4'}), 'drop.mp4');
-  document.getElementById('dlNote').textContent = 'Файл сохранён';
-};
+  const noteEl = document.getElementById('dlNote'); if(noteEl) noteEl.textContent = 'Файл сохранён';
+}
+document.getElementById('dlHtml').onclick = downloadReport;
+document.getElementById('dlCsv').onclick = downloadCsv;
+document.getElementById('dlVideo').onclick = downloadVideo;
+document.querySelectorAll('[data-act]').forEach(function(el){
+  const a = el.dataset.act;
+  el.onclick = a === 'report' ? downloadReport : a === 'video' ? downloadVideo : downloadCsv;
+});
 
 buildChart();
 const m = location.hash.match(/f(\d+)/);
