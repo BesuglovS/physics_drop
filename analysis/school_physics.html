@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Методический конспект: темы школьной физики 7–11 классов на одном видео падения мяча — свободное падение, g, отскок, импульс, энергия, звук, оптика.">
+<meta name="theme-color" content="#1d2740">
+<title>Школьная физика на одном видео: темы, вопросы и интерактивы — методический конспект</title>
+<style>
+:root{
+  --bg:#eef1f6; --card:#ffffff; --ink:#141a25; --muted:#5b6678; --line:#dfe4ec;
+  --blue:#2563eb; --red:#e11d48; --green:#0f9d58; --amber:#c2761a; --violet:#7c3aed;
+  --shadow:0 1px 2px rgba(16,24,40,.06),0 8px 24px -12px rgba(16,24,40,.25);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.65 "Inter","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  -webkit-font-smoothing:antialiased}
+a{color:var(--blue)}
+a:hover{color:#1d4ed8}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px 80px}
+
+header.hero{background:radial-gradient(900px 320px at 88% -20%,#3b5bdb55,transparent),
+  linear-gradient(160deg,#111826,#1d2740 55%,#22304d);color:#fff;padding:44px 0 38px}
+header.hero .wrap{padding-bottom:0}
+.eyebrow{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:#8fb0ff;font-weight:800}
+h1{font-size:clamp(26px,4.2vw,42px);line-height:1.12;margin:10px 0 12px;letter-spacing:-.02em;font-weight:800}
+.hero p{max-width:820px;color:#c8d2e6;margin:0 0 18px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.chip{background:#ffffff17;border:1px solid #ffffff2e;border-radius:999px;padding:5px 12px;
+  font-size:12.5px;color:#dfe7f7;text-decoration:none}
+.chip b{color:#fff}
+.hero-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}
+.btn{display:inline-flex;align-items:center;gap:6px;border:1px solid #ffffff3a;border-radius:10px;
+  padding:8px 13px;font-size:14px;font-weight:700;color:#fff;text-decoration:none;background:#ffffff12}
+.btn:hover{background:#ffffff22;color:#fff}
+.btn.primary{background:#2563eb;border-color:#2563eb}
+.btn.primary:hover{background:#1d4ed8}
+
+.doc-layout{display:grid;grid-template-columns:270px minmax(0,1fr);gap:30px;align-items:start;
+  margin-top:-18px;position:relative;z-index:2}
+.toc{position:sticky;top:18px;background:var(--card);border:1px solid var(--line);border-radius:16px;
+  padding:16px 16px 12px;box-shadow:var(--shadow);max-height:calc(100vh - 36px);overflow:auto}
+.toc summary{cursor:pointer;font-size:13px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);font-weight:800;list-style:none;display:flex;align-items:center;
+  justify-content:space-between;gap:10px;margin:0 0 8px}
+.toc summary::-webkit-details-marker{display:none}
+.toc summary::after{content:"⌄";color:#8a94a6;font-size:16px;line-height:1}
+.toc[open] summary::after{content:"⌃"}
+.toc-list,.toc-list ul{list-style:none;margin:0;padding:0}
+.toc-list li{margin:1px 0}
+.toc-list a{display:block;padding:4px 8px;border-radius:7px;text-decoration:none;color:#445063;
+  font-size:13px;line-height:1.35}
+.toc-list a:hover{background:#f2f6ff;color:#1d4ed8}
+.toc-list a.on{background:#e8efff;color:#1d4ed8;font-weight:700}
+.toc-list ul{margin:1px 0 5px 9px;border-left:1px solid var(--line);padding-left:7px}
+.toc-list ul a{font-size:12.4px;color:#667386}
+
+article{min-width:0}
+article>h2{font-size:22px;line-height:1.3;margin:34px 0 14px;padding-top:8px;letter-spacing:-.01em}
+article>h2:first-child{margin-top:0}
+article>h3{font-size:17px;margin:26px 0 10px;color:#1d2740}
+article p{margin:0 0 13px}
+article ul,article ol{margin:0 0 15px;padding-left:24px}
+article li{margin-bottom:7px}
+article strong{color:#0f172a}
+article code{background:#f1f4f9;border:1px solid var(--line);border-radius:6px;padding:1px 6px;
+  font-size:13.5px;font-family:"JetBrains Mono",Consolas,monospace;overflow-wrap:anywhere}
+article pre{background:#0f172a;color:#e2e8f0;border-radius:12px;padding:14px 16px;overflow:auto;
+  font-size:13px;line-height:1.5}
+article pre code{background:none;border:0;padding:0;color:inherit}
+article blockquote{margin:0 0 20px;background:#f8fafd;border:1px solid var(--line);
+  border-left:4px solid var(--blue);border-radius:12px;padding:14px 17px;color:#4b5769}
+article blockquote p:last-child{margin-bottom:0}
+article hr{border:0;border-top:1px solid var(--line);margin:26px 0}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:14px 0 20px;
+  border:1px solid var(--line);border-radius:12px;background:#fff}
+.table-wrap::before{content:"↔ таблицу можно прокрутить";display:none;font-size:11.5px;
+  color:var(--muted);padding:7px 11px 0;background:#fff}
+table{width:100%;border-collapse:collapse;font-size:14px;min-width:560px}
+th,td{padding:9px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:#f6f8fb;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
+  font-weight:800;position:sticky;top:0}
+tbody tr:nth-child(even){background:#fafbfe}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover{background:#f5f9ff}
+.lead{font-size:17px;color:#3c485b;max-width:900px}
+.cta{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;
+  background:linear-gradient(135deg,#eef4ff,#f8fafd);border:1px solid #d7e2f7;border-radius:14px;
+  padding:15px 18px;margin:0 0 24px}
+.cta p{margin:0;max-width:720px;font-size:14px;color:#445063}
+.cta a{white-space:nowrap}
+.hlink{margin-left:6px;color:#b6c0d0;text-decoration:none;font-weight:400;opacity:0;transition:.15s}
+h2:hover .hlink,h3:hover .hlink{opacity:1}
+.hlink:hover{color:var(--blue)}
+footer{text-align:center;color:var(--muted);font-size:12.5px;padding:28px 0 0}
+#toTop{position:fixed;right:18px;bottom:18px;width:42px;height:42px;border-radius:50%;
+  border:1px solid var(--line);background:#fff;color:var(--blue);font-size:19px;font-weight:800;
+  box-shadow:var(--shadow);cursor:pointer;display:none;z-index:20}
+#toTop.show{display:block}
+
+@media(max-width:960px){
+  .doc-layout{grid-template-columns:1fr;margin-top:0}
+  .toc{position:static;max-height:none}
+  .toc-list{columns:2;column-gap:18px}
+  .toc-list ul{columns:1}
+}
+@media(max-width:620px){
+  .wrap{padding:0 15px 60px}
+  header.hero{padding:34px 0 30px}
+  .toc-list{columns:1}
+  article>h2{font-size:19px}
+  .table-wrap{margin-left:-2px;margin-right:-2px}
+  .table-wrap::before{display:block}
+}
+@media print{
+  body{background:#fff} header.hero{background:#1d2740 !important;-webkit-print-color-adjust:exact}
+  .toc,#toTop,.hlink{display:none} .doc-layout{display:block}
+  article{max-width:none} .table-wrap{overflow:visible} table{min-width:0}
+}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Методический конспект · физика 7–11</div>
+    <h1>Школьная физика на одном видео: темы, вопросы и интерактивы</h1>
+    <p>Один опыт — падение и отскок мяча — как универсальный стенд для измерения, кинематики,
+      динамики, энергии, импульса, звука и оптики. С вопросами, планами уроков и типичными ошибками.</p>
+    <div class="chips">
+      <span class="chip"><b>7–11</b> классы</span>
+      <span class="chip"><b>20+</b> тем</span>
+      <span class="chip"><b>9</b> интерактивов</span>
+      <span class="chip"><b>109</b> кадров · 30 к/с</span>
+      <span class="chip">прямо и косвенно</span>
+    </div>
+    <div class="hero-actions">
+      <a class="btn primary" href="report.html#school">Открыть интерактивы →</a>
+      <a class="btn" href="school_physics.md" download>Скачать Markdown</a>
+      <a class="btn" href="report.html">Весь отчёт</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="doc-layout">
+    <details class="toc" open>
+      <summary>Содержание</summary>
+      <ol class="toc-list"><li><a href="#s1">0. Что именно измерено</a></li><li><a href="#s2">1. Карта тем по классам</a><ul><li><a href="#s3">7 класс</a></li><li><a href="#s4">8 класс</a></li><li><a href="#s5">9 класс</a></li><li><a href="#s6">10–11 класс</a></li></ul></li><li><a href="#s7">2. Готовые сценарии уроков</a><ul><li><a href="#s8">7 класс, 40–45 минут: «Измеряем движение»</a></li><li><a href="#s9">9 класс, 45 минут: «Свободное падение и g»</a></li><li><a href="#s10">9–10 класс, 45 минут: «Удар, импульс, энергия»</a></li><li><a href="#s11">8 класс, 40 минут: «Звук и оптика вокруг нас»</a></li></ul></li><li><a href="#s12">3. Вопросы для исследования (проекты)</a></li><li><a href="#s13">4. Типичные ошибки и как их обсуждать</a></li><li><a href="#s14">5. Что можно улучшить в самом эксперименте</a></li><li><a href="#s15">6. Ссылки внутри проекта</a></li></ol>
+    </details>
+    <article>
+      <div class="cta">
+        <p><b>Нужны модели к этим темам?</b> В интерактивном отчёте — свободное падение на планетах,
+          отскок и коэффициент восстановления, энергия, сопротивление воздуха, размытие, параллакс,
+          подгонка параболы, звук и импульс.</p>
+        <a class="btn primary" style="background:#2563eb;border-color:#2563eb;color:#fff"
+           href="report.html#school">К интерактивам →</a>
+      </div>
+      <p>Этот файл — методический конспект к эксперименту <code>drop.mp4</code>: мяч отпускают без начальной
+скорости, он падает вдоль бумажной шкалы, ударяется о мат и отскакивает. Один и тот же
+набор кадров даёт материал для 7–11 классов. Ниже — карта тем, минимальные формулы,
+вопросы к ученикам и указание на интерактив в <code>report.html#school</code>.</p>
+<blockquote>
+<p><strong>Границы применимости.</strong> Это учебный видеоанализ, а не лабораторный эталон. Основная
+систематика — масштаб и перспектива: бумажная шкала и плоскость полёта мяча не совпадают.
+Поэтому абсолютные высоты имеют погрешность порядка ±5 %, а g — порядка ±0,5 м/с².
+Отношения высот и коэффициент восстановления от общего масштаба почти не зависят.</p>
+<p><strong>Про коэффициент восстановления.</strong> В базовом школьном курсе его может не быть; здесь он
+вводится как естественное отношение <code>e = v↑/v↓ = √(h↑/h↓)</code> и как удобная мера потери
+энергии. Это пропедевтика к теме «абсолютно упругий и неупругий удар» в 9–10 классах.</p>
+</blockquote>
+<hr />
+<h2 id="s1">0. Что именно измерено<a class="hlink" href="#s1" aria-label="Ссылка на раздел">#</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Величина</th>
+<th>Значение</th>
+<th>Комментарий</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Высота падения (центр мяча)</td>
+<td>1,82 м</td>
+<td>от отпускания до поверхности мата</td>
+</tr>
+<tr>
+<td>Время падения</td>
+<td>0,63 с</td>
+<td>19 кадров при 30 к/с</td>
+</tr>
+<tr>
+<td>Скорость у мата</td>
+<td>5,86 м/с</td>
+<td>по подгонке параболы</td>
+</tr>
+<tr>
+<td>Высота отскока</td>
+<td>75 см</td>
+<td>42 % от высоты падения</td>
+</tr>
+<tr>
+<td>Коэффициент восстановления</td>
+<td>0,63 по скоростям, 0,645 по высотам</td>
+<td>разница — оценка неопределённости</td>
+</tr>
+<tr>
+<td>Потеря кинетической энергии</td>
+<td>≈60 %</td>
+<td>1 − e²</td>
+</tr>
+<tr>
+<td>Второй удар</td>
+<td>через 0,76 с</td>
+<td>22,9 кадра</td>
+</tr>
+<tr>
+<td>Ускорение свободного падения</td>
+<td>9,3 и 9,7 м/с²</td>
+<td>два независимых участка; итог 9,5 ± 0,5</td>
+</tr>
+</tbody>
+</table></div>
+<p>Кадры: 1–31 — удержание, 32–49 — падение, ≈50,3 — первый удар, 51–61 — подъём,
+≈61,7 — вершина, 62–73 — повторное падение, ≈73,2 — второй удар, 74–109 — мяч вне
+линии шкалы.</p>
+<hr />
+<h2 id="s2">1. Карта тем по классам<a class="hlink" href="#s2" aria-label="Ссылка на раздел">#</a></h2>
+<h3 id="s3">7 класс<a class="hlink" href="#s3" aria-label="Ссылка на раздел">#</a></h3>
+<p><strong>1.1. Измерение физических величин. Цена деления. Погрешность. Параллакс.</strong>
+<em>Прямо.</em></p>
+<p>Что показать: шкала на бумаге, её marks 10…160 см, покадровое считывание координаты.
+Почему одна и та же шкала даёт разный масштаб вверху и внизу; что такое систематическая
+и случайная погрешность; почему нельзя писать «g = 9,33» без ±.</p>
+<p>Вопросы: «Почему мы не можем просто приложить линейку к экрану?», «Что изменится, если
+мяч летит на 10 см ближе к камере?», «Какая погрешность — случайная, а какая систематическая?»</p>
+<p>Интерактив: <strong>Параллакс и масштаб</strong> (<a href="report.html#sim-parallax"><code>#sim-parallax</code></a>), <strong>Размытие и частота кадров</strong>
+(<a href="report.html#sim-blur"><code>#sim-blur</code></a>).</p>
+<p><strong>1.2. Механическое движение: путь, перемещение, скорость, средняя скорость.</strong>
+<em>Прямо.</em></p>
+<p>Что показать: координата мяча через каждые 1/30 с; средняя скорость на участке
+<code>v_ср = Δs/Δt</code>; мгновенная скорость как предел при уменьшении Δt; почему на графике
+<code>v(t)</code> наклон постоянный, а на <code>h(t)</code> — парабола.</p>
+<p>Вопросы: «Чем средняя скорость отличается от мгновенной?», «Как по графику h(t) найти
+среднюю скорость?», «Почему за равные промежутки времени мяч проходит разные расстояния?»</p>
+<p>Интерактив: плеер (покадрово), <strong>Подгонка параболы</strong> (<a href="report.html#sim-fit"><code>#sim-fit</code></a>).</p>
+<p><strong>1.3. Сила тяжести. Вес тела. Невесомость.</strong>
+<em>Прямо/косвенно.</em></p>
+<p>Что показать: в свободном падении мяч не давит на опору и не растягивает подвес — он
+«невесом», хотя сила тяжести действует. Сравнить g на Земле, Луне, Марсе.</p>
+<p>Вопросы: «Почему мяч не падает медленнее, если он лёгкий?», «Что было бы с мячом на Луне?»,
+«Почему космонавт на орбите находится в невесомости, хотя Земля его притягивает?»</p>
+<p>Интерактив: <strong>Свободное падение и g на планетах</strong> (<a href="report.html#sim-free"><code>#sim-free</code></a>).</p>
+<p><strong>1.4. Сила упругости. Деформация. Трение.</strong>
+<em>Косвенно.</em></p>
+<p>Что показать: мат и мяч деформируются при ударе; сила упругости возвращает мяч; часть
+энергии уходит в трение и деформацию. Это продевается к теме «сила упругости» и к
+обсуждению, почему отскок не идеальный.</p>
+<p>Вопросы: «Почему мяч отскакивает не на ту же высоту?», «Куда делась энергия?»,
+«Почему на мате отскок выше, чем на полу?»</p>
+<p>Интерактив: <strong>Отскок: e, высоты и энергия</strong> (<a href="report.html#sim-bounce"><code>#sim-bounce</code></a>).</p>
+<p><strong>1.5. Давление твёрдых тел.</strong>
+<em>Косвенно.</em></p>
+<p>Что показать: при ударе важна не только сила, но и площадь контакта. Мат увеличивает
+время контакта и площадь, поэтому давление и средняя сила меньше.</p>
+<p>Вопросы: «Почему мяч на мате не пробивает его?», «Что будет, если ударить тем же мячом
+в тонкий лист?»</p>
+<p>Интерактив: <strong>Импульс и средняя сила удара</strong> (<a href="report.html#imp"><code>#imp</code></a> в §4 отчёта).</p>
+<p><strong>1.6. Работа, мощность, энергия.</strong>
+<em>Прямо.</em></p>
+<p>Что показать: <code>Ep = mgh</code>, <code>Ek = mv²/2</code>; при падении Ep переходит в Ek; при ударе часть
+энергии уходит в тепло, звук и деформацию.</p>
+<p>Вопросы: «В какой точке Ep максимальна? Ek?», «Почему сумма Ep + Ek не сохраняется при
+ударе?», «Какая мощность развивается при ударе?»</p>
+<p>Интерактив: <strong>Энергия во времени</strong> (<a href="report.html#sim-energy"><code>#sim-energy</code></a>).</p>
+<hr />
+<h3 id="s4">8 класс<a class="hlink" href="#s4" aria-label="Ссылка на раздел">#</a></h3>
+<p><strong>2.1. Тепловые явления. Внутренняя энергия.</strong>
+<em>Косвенно.</em></p>
+<p>Что показать: потерянные 60 % механической энергии не исчезают, а переходят во
+внутреннюю энергию мяча и мата и в звук. Оценка нагрева: <code>ΔT = ΔE/(m·c)</code>. Для мяча
+20 г и <code>c ≈ 1000 Дж/(кг·К)</code> нагрев получается порядка 0,01 К — поэтому его не видно,
+но энергия перешла в тепло.</p>
+<p>Вопросы: «Куда делась энергия?», «Почему мяч не нагрелся заметно?», «Как первый закон
+термодинамики объясняет удар?»</p>
+<p>Интерактив: <strong>Энергия во времени</strong> (<a href="report.html#sim-energy"><code>#sim-energy</code></a>) — в нём есть оценка нагрева.</p>
+<p><strong>2.2. Звук. Источники звука. Громкость.</strong>
+<em>Косвенно.</em></p>
+<p>Что показать: удар рождает короткий звуковой импульс; по аудиодорожке два хлопка
+разделены ≈0,77 с, по видео — 0,76 с. Расхождение 1–2 % связано с задержкой кодека и
+точностью определения onsets. Громкость первого хлопка больше: удар о мат сильнее.</p>
+<p>Вопросы: «Почему мы слышим удар?», «Что колеблется?», «Почему интервал по звуку чуть
+отличается от интервала по видео?»</p>
+<p>Интерактив: <strong>Звук удара</strong> (<a href="report.html#sim-sound"><code>#sim-sound</code></a>).</p>
+<p><strong>2.3. Оптика. Линза. Камера. Изображение.</strong>
+<em>Косвенно.</em></p>
+<p>Что показать: камера строит изображение; перспектива меняет масштаб; движение за время
+выдержки даёт смаз; 30 к/с — это дискретизация времени. Обсудить, почему на кадрах
+41–56 мяч превращается в штрих.</p>
+<p>Вопросы: «Почему далёкие предметы кажутся меньше?», «Почему на быстрых кадрах мяч
+размазан?», «Что такое роллинг-шаттер?»</p>
+<p>Интерактивы: <strong>Размытие и частота кадров</strong> (<a href="report.html#sim-blur"><code>#sim-blur</code></a>), <strong>Параллакс и масштаб</strong>
+(<a href="report.html#sim-parallax"><code>#sim-parallax</code></a>).</p>
+<hr />
+<h3 id="s5">9 класс<a class="hlink" href="#s5" aria-label="Ссылка на раздел">#</a></h3>
+<p><strong>3.1. Кинематика равноускоренного движения.</strong>
+<em>Прямо.</em></p>
+<p>Что показать: <code>h(t) = h₀ − v₀t − ½gt²</code>, <code>v(t) = −v₀ − gt</code>; наклон <code>v(t)</code> — ускорение;
+площадь под <code>v(t)</code> — перемещение; парабола на <code>h(t)</code> — признак постоянного ускорения.</p>
+<p>Вопросы: «Как по графику v(t) найти g?», «Почему наклон одинаков на всём участке?»,
+«Что означает отрицательная скорость?»</p>
+<p>Интерактивы: <strong>Свободное падение</strong> (<a href="report.html#sim-free"><code>#sim-free</code></a>), <strong>Подгонка параболы</strong> (<a href="report.html#sim-fit"><code>#sim-fit</code></a>).</p>
+<p><strong>3.2. Свободное падение.</strong>
+<em>Прямо.</em></p>
+<p>Что показать: основной результат. Два независимых участка дают 9,3 и 9,7 м/с².
+Среднее 9,5 ± 0,5 согласуется с 9,81 в пределах погрешности. Обсудить, почему не
+получилось ровно 9,81: масштаб, перспектива, воздух, дискретность.</p>
+<p>Вопросы: «Почему g не зависит от массы?», «Какие факторы занижают результат?»,
+«Как улучшить эксперимент?»</p>
+<p>Интерактивы: <strong>Свободное падение</strong> (<a href="report.html#sim-free"><code>#sim-free</code></a>), <strong>Сопротивление воздуха</strong>
+(<a href="report.html#sim-drag"><code>#sim-drag</code></a>), <strong>Подгонка параболы</strong> (<a href="report.html#sim-fit"><code>#sim-fit</code></a>).</p>
+<p><strong>3.3. Законы Ньютона. Сила тяжести. Сопротивление среды.</strong>
+<em>Прямо/косвенно.</em></p>
+<p>Что показать: <code>mg − F_сопр = ma</code>; при малых скоростях сопротивление мало, при больших
+растёт как <code>v²</code>. Оценка: для мяча Ø4,1 см при 5,9 м/с <code>F_сопр ≈ 0,013 Н</code>; при массе
+5 г это дало бы <code>a_сопр ≈ 2,6 м/с²</code>, что несовместимо с измеренным g. Значит, мяч
+тяжелее (или сопротивление меньше). Это хороший урок о том, что модель надо проверять
+на согласованность.</p>
+<p>Вопросы: «Почему лёгкий мяч падает медленнее тяжёлого?», «Когда сопротивление воздуха
+нельзя не учитывать?», «Оцените массу мяча по измеренному g».</p>
+<p>Интерактив: <strong>Сопротивление воздуха</strong> (<a href="report.html#sim-drag"><code>#sim-drag</code></a>).</p>
+<p><strong>3.4. Импульс тела. Закон сохранения импульса.</strong>
+<em>Прямо.</em></p>
+<p>Что показать: <code>J = Δp = m(v↓ + v↑)</code>; средняя сила <code>F = J/Δt</code>; чем больше время контакта,
+тем меньше сила при том же импульсе. Мат увеличивает Δt и уменьшает F.</p>
+<p>Вопросы: «Почему при прыжке на мат сила меньше, чем на бетон?», «Куда направлен импульс,
+переданный мату?», «Почему масса мяча не измеряется по видео?»</p>
+<p>Интерактив: <strong>Импульс и средняя сила удара</strong> (<a href="report.html#imp"><code>#imp</code></a>).</p>
+<p><strong>3.5. Механическая энергия. Закон сохранения.</strong>
+<em>Прямо.</em></p>
+<p>Что показать: <code>Ep + Ek = const</code> в полёте; при ударе <code>Ek_после/Ek_до = e²</code>; потеря 60 %.
+Обсудить, что «закон сохранения» не нарушается: энергия переходит в другие виды.</p>
+<p>Вопросы: «Почему e², а не e?», «Куда уходит энергия?», «Как связаны высота отскока и e?»</p>
+<p>Интерактивы: <strong>Энергия во времени</strong> (<a href="report.html#sim-energy"><code>#sim-energy</code></a>), <strong>Отскок</strong> (<a href="report.html#sim-bounce"><code>#sim-bounce</code></a>).</p>
+<p><strong>3.6. Механические колебания. Затухающие колебания.</strong>
+<em>Косвенно.</em></p>
+<p>Что показать: серия отскоков — не гармонические колебания, но похожая периодическая
+система с затуханием. Высоты образуют геометрическую прогрессию <code>hₙ = h₀·e²ⁿ</code>;
+энергия убывает как <code>e²ⁿ</code>; время между ударами <code>2v/g</code>.</p>
+<p>Вопросы: «Почему каждый следующий отскок ниже?», «Это колебания?», «Как оценить полное
+время до остановки?»</p>
+<p>Интерактив: <strong>Отскок: e, высоты и энергия</strong> (<a href="report.html#sim-bounce"><code>#sim-bounce</code></a>).</p>
+<p><strong>3.7. Гравитация. g на планетах.</strong>
+<em>Косвенно.</em></p>
+<p>Что показать: <code>t = √(2h/g)</code>; при той же высоте на Луне падение длится в <code>√(9,81/1,62) ≈ 2,5</code>
+раза дольше. Сравнить Землю, Луну, Марс, Юпитер.</p>
+<p>Вопросы: «Почему на Луне мяч падает медленнее?», «Как бы изменился отскок?»,
+«Почему g на Юпитере больше?»</p>
+<p>Интерактив: <strong>Свободное падение и g на планетах</strong> (<a href="report.html#sim-free"><code>#sim-free</code></a>).</p>
+<hr />
+<h3 id="s6">10–11 класс<a class="hlink" href="#s6" aria-label="Ссылка на раздел">#</a></h3>
+<p><strong>4.1. Молекулярная физика. Температура. Внутренняя энергия.</strong>
+<em>Косвенно.</em></p>
+<p>Что показать: удар — быстрый процесс, при котором механическая энергия переходит во
+внутреннюю. Оценка <code>ΔT = ΔE/(mc)</code> даёт малые значения, но это не отменяет первого начала
+термодинамики. Можно обсудить адиабатическое сжатие воздуха внутри мяча.</p>
+<p><strong>4.2. Электромагнитные волны. Видео. Оптика.</strong>
+<em>Косвенно.</em></p>
+<p>Что показать: видео — последовательность кадров; 30 к/с; пиксель; RGB; кодек H.264;
+роллинг-шаттер; размытие. Обсудить, чем «компьютерное зрение» отличается от глаза.</p>
+<p><strong>4.3. Математика и информатика (межпредметные связи).</strong>
+<em>Прямо.</em></p>
+<p>Что показать: квадратичная функция и парабола; производная как скорость; МНК;
+остатки; распространение погрешностей; маска <code>R − max(G,B) &gt; 45</code>; медиана фона;
+центр масс пятна; JSON/CSV. Это хороший проект для 10–11 класса.</p>
+<p>Интерактивы: <strong>Подгонка параболы</strong> (<a href="report.html#sim-fit"><code>#sim-fit</code></a>), плеер и таблица по кадрам.</p>
+<hr />
+<h2 id="s7">2. Готовые сценарии уроков<a class="hlink" href="#s7" aria-label="Ссылка на раздел">#</a></h2>
+<h3 id="s8">7 класс, 40–45 минут: «Измеряем движение»<a class="hlink" href="#s8" aria-label="Ссылка на раздел">#</a></h3>
+<ol>
+<li>5 мин — показать видео без анализа, спросить: «Что можно измерить?»</li>
+<li>10 мин — открыть плеер, пройти по кадрам 31, 38, 44, 49, 50; записать координаты.</li>
+<li>10 мин — посчитать среднюю скорость на участке 31→44 и 44→49; обсудить разницу.</li>
+<li>10 мин — интерактив «Параллакс и масштаб»: почему масштаб зависит от плоскости.</li>
+<li>5 мин — вывод: скорость растёт, движение неравномерное.</li>
+</ol>
+<h3 id="s9">9 класс, 45 минут: «Свободное падение и g»<a class="hlink" href="#s9" aria-label="Ссылка на раздел">#</a></h3>
+<ol>
+<li>5 мин — постановка: измерить g по видео.</li>
+<li>10 мин — построить h(t) и v(t) по таблице; найти наклон v(t).</li>
+<li>10 мин — интерактив «Подгонка параболы»: подобрать g и v₀, сравнить с МНК.</li>
+<li>10 мин — интерактив «Сопротивление воздуха»: оценить, может ли мяч массой 5 г
+падать с ускорением 9,3 м/с².</li>
+<li>10 мин — вывод и обсуждение погрешностей.</li>
+</ol>
+<h3 id="s10">9–10 класс, 45 минут: «Удар, импульс, энергия»<a class="hlink" href="#s10" aria-label="Ссылка на раздел">#</a></h3>
+<ol>
+<li>5 мин — что происходит при ударе?</li>
+<li>10 мин — по графику v(t) найти v↓ и v↑, вычислить e.</li>
+<li>10 мин — интерактив «Импульс и средняя сила»: mass, Δt, площадь.</li>
+<li>10 мин — интерактив «Энергия во времени»: потеря 60 %, нагрев.</li>
+<li>10 мин — вывод: удар неупругий, энергия переходит в тепло и звук.</li>
+</ol>
+<h3 id="s11">8 класс, 40 минут: «Звук и оптика вокруг нас»<a class="hlink" href="#s11" aria-label="Ссылка на раздел">#</a></h3>
+<ol>
+<li>10 мин — прослушать audio.wav, найти два хлопка, измерить интервал.</li>
+<li>10 мин — сравнить с видео; обсудить задержку кодека.</li>
+<li>10 мин — интерактив «Размытие»: почему мяч смазан.</li>
+<li>10 мин — интерактив «Параллакс»: почему масштаб врёт.</li>
+</ol>
+<hr />
+<h2 id="s12">3. Вопросы для исследования (проекты)<a class="hlink" href="#s12" aria-label="Ссылка на раздел">#</a></h2>
+<ol>
+<li>Как зависит коэффициент восстановления от высоты падения? (нужна серия опытов)</li>
+<li>Как зависит e от материала поверхности: мат, пол, стол, картон?</li>
+<li>Можно ли по видео оценить массу мяча, если известна сила сопротивления?</li>
+<li>Как влияет частота кадров на точность g? Снять видео 30, 60, 120 к/с.</li>
+<li>Как влияет положение камеры (высота, наклон, расстояние) на систематику?</li>
+<li>Можно ли восстановить траекторию по смазанным кадрам? Сравнить методы.</li>
+<li>Как оценить потерю энергии по звуку? (громкость и длительность хлопка)</li>
+<li>Построить модель серии отскоков с переменным e и сравнить с видео.</li>
+</ol>
+<hr />
+<h2 id="s13">4. Типичные ошибки и как их обсуждать<a class="hlink" href="#s13" aria-label="Ссылка на раздел">#</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Ошибка</th>
+<th>В чём проблема</th>
+<th>Как правильно</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>«g = 9,33, значит, g не 9,81»</td>
+<td>путают измеренное значение и табличное</td>
+<td>писать <code>g = 9,3 ± 0,5</code>, обсуждать систематику</td>
+</tr>
+<tr>
+<td>«Координаты ±0,5 см» для всех кадров</td>
+<td>на смазанных кадрах ошибка больше</td>
+<td>разделять резкие и смазанные кадры</td>
+</tr>
+<tr>
+<td>«e = 0,63» без пояснения</td>
+<td>e по скоростям и по высотам чуть разные</td>
+<td>показать оба и объяснить разницу</td>
+</tr>
+<tr>
+<td>«Мяч остаётся на полу» как измерение</td>
+<td>после 74-го кадра мяч вне шкалы</td>
+<td>назвать это качественным наблюдением</td>
+</tr>
+<tr>
+<td>«Сопротивление воздуха всё объясняет»</td>
+<td>для лёгкого мяча эффект был бы слишком большим</td>
+<td>проверить через массу и <code>F_сопр</code></td>
+</tr>
+<tr>
+<td>«Масштаб постоянный»</td>
+<td>шкала не плоская, мяч в другой плоскости</td>
+<td>калибровка + оценка параллакса</td>
+</tr>
+<tr>
+<td>«Средняя скорость = мгновенная»</td>
+<td>на неравномерном движении это не так</td>
+<td>показать <code>v_ср</code> на разных участках</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="s14">5. Что можно улучшить в самом эксперименте<a class="hlink" href="#s14" aria-label="Ссылка на раздел">#</a></h2>
+<ol>
+<li><strong>Положить шкалу в плоскость полёта мяча</strong> или поставить рядом вертикальную рейку
+на той же глубине. Это уберёт главную систематику.</li>
+<li><strong>Снять видео с 60–120 к/с</strong> — меньше смаза и лучше моменты удара.</li>
+<li><strong>Положить в кадр мяч известного диаметра</strong> (например, стандартный 40 мм) для
+независимой калибровки.</li>
+<li><strong>Замерить массу мяча</strong> на кухонных весах — тогда импульс и сила станут
+количественными, а не «на ползунке».</li>
+<li><strong>Снять несколько отскоков</strong> и построить <code>ln(hₙ)</code> от <code>n</code> — проверить постоянство e.</li>
+<li><strong>Записать звук отдельно</strong> с известной задержкой или использовать хлопок-синхронизатор.</li>
+<li><strong>Поставить камеру на штатив</strong> — убрать дрожание и роллинг-шаттер.</li>
+<li><strong>Сделать несколько дублей</strong> и оценить разброс g между ними.</li>
+</ol>
+<hr />
+<h2 id="s15">6. Ссылки внутри проекта<a class="hlink" href="#s15" aria-label="Ссылка на раздел">#</a></h2>
+<ul>
+<li><code>report.html#school</code> — интерактивная карта тем и все виджеты.</li>
+<li><code>report.md</code> — компактный отчёт с таблицей по кадрам.</li>
+<li><code>frames.csv</code> — исходные координаты по кадрам.</li>
+<li><code>params.json</code> — единые параметры подгонки (g, e, моменты ударов).</li>
+<li><code>audio.wav</code> — звук для проверки моментов удара.</li>
+<li><code>final_analysis.py</code> — детекция, калибровка, МНК, графики.</li>
+<li><code>make_html.py</code> — сборка интерактивного отчёта.</li>
+</ul>
+
+    </article>
+  </div>
+  <footer>Собрано из <code>school_physics.md</code> · видео <code>drop.mp4</code> · 30 к/с ·
+    интерактивная версия — <a href="report.html#school">report.html#school</a></footer>
+</div>
+<button id="toTop" type="button" aria-label="Наверх">↑</button>
+<script>
+(function(){
+  "use strict";
+  const toc = document.querySelector('.toc');
+  if (toc && window.matchMedia('(max-width: 960px)').matches) toc.removeAttribute('open');
+  const links = Array.from(document.querySelectorAll('.toc a[href^="#"]'));
+  const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+  const heads = Array.from(document.querySelectorAll('article h2[id], article h3[id]'));
+  if ('IntersectionObserver' in window) {
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (!en.isIntersecting) return;
+        links.forEach(a => a.classList.remove('on'));
+        const a = map.get(en.target.id);
+        if (a) a.classList.add('on');
+      });
+    }, {rootMargin: '-10% 0px -75% 0px', threshold: 0});
+    heads.forEach(h => obs.observe(h));
+  }
+  const top = document.getElementById('toTop');
+  const onScroll = () => top.classList.toggle('show', window.scrollY > 700);
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+  top.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+  // На мобильных TOC не должен занимать полэкрана: сворачиваем после перехода.
+  links.forEach(a => a.addEventListener('click', () => {
+    if (window.matchMedia('(max-width: 960px)').matches) {
+      setTimeout(() => window.scrollBy(0, -8), 60);
+    }
+  }));
+})();
+</script>
+</body>
+</html>

@@ -1,31 +1,60 @@
 # -*- coding: utf-8 -*-
-"""Готовит версию для сервера: выносит инлайновый <script> в app.js (CSP script-src 'self')
-и складывает рядом файлы, которые раздаются по ссылкам из раздела «Файлы»."""
-import re, os, shutil
+"""Готовит версию для сервера: выносит инлайновый <script> в app.js
+(CSP script-src 'self') и складывает рядом файлы, которые раздаются по ссылкам
+из раздела «Файлы».
 
-A = r"C:\projects\video\analysis"
-OUT = r"C:\projects\video\analysis\deploy"
-if os.path.isdir(OUT):
+Важно: app.js отдаётся nginx с Cache-Control immutable на 30 дней, поэтому
+в index.html добавляется версия (?v=<hash>), иначе браузер может держать старый JS.
+"""
+import hashlib
+import re
+import shutil
+from pathlib import Path
+
+A = Path(__file__).resolve().parent
+OUT = A / "deploy"
+if OUT.is_dir():
     shutil.rmtree(OUT)
-os.makedirs(OUT)
+OUT.mkdir()
 
-html = open(A + r"\report.html", encoding="utf-8").read()
+html = (A / "report.html").read_text(encoding="utf-8")
 m = re.search(r"<script>(.*?)</script>", html, re.S)
 assert m, "инлайновый скрипт не найден"
 js = m.group(1)
-open(OUT + r"\app.js", "w", encoding="utf-8").write(js)
+(OUT / "app.js").write_text(js, encoding="utf-8")
+js_ver = hashlib.sha256(js.encode("utf-8")).hexdigest()[:12]
 
-new_html = html[:m.start()] + '<script src="app.js"></script>' + html[m.end():]
-open(OUT + r"\index.html", "w", encoding="utf-8").write(new_html)
+new_html = (
+    html[:m.start()]
+    + f'<script src="app.js?v={js_ver}"></script>'
+    + html[m.end():]
+)
+(OUT / "index.html").write_text(new_html, encoding="utf-8")
 
-EXTRA = ["report.md", "frames.csv", "trajectory.png", "key_frames.png", "contact_sheet.png",
-         "audio.wav", "meta.json", "final_analysis.py", "make_html.py", "make_report.py",
-         "meta.py", "check_velocity.py", "split_for_server.py"]
+EXTRA = [
+    "report.md", "frames.csv", "params.json", "school_physics.md",
+    "school_physics.html", "AUDIT.md",
+    "trajectory.png", "key_frames.png", "contact_sheet.png", "audio.wav",
+    "meta.json", "final_analysis.py", "make_html.py", "make_report.py",
+    "make_school_html.py", "meta.py", "check_velocity.py", "selftest.py",
+    "split_for_server.py",
+]
 for name in EXTRA:
-    shutil.copy2(os.path.join(A, name), os.path.join(OUT, name))
+    shutil.copy2(A / name, OUT / name)
 
-total = sum(os.path.getsize(os.path.join(OUT, f)) for f in os.listdir(OUT))
+# На сервере отчёт называется index.html (report.html не выкладывается:
+# он содержит инлайновый script, который запрещён CSP script-src 'self').
+# Правим ссылки в сопутствующих документах, чтобы они не вели в 404.
+for name in ("school_physics.html", "school_physics.md", "report.md", "AUDIT.md"):
+    p = OUT / name
+    if not p.exists():
+        continue
+    txt = p.read_text(encoding="utf-8")
+    txt = txt.replace("report.html", "index.html")
+    p.write_text(txt, encoding="utf-8")
+
+total = sum(p.stat().st_size for p in OUT.iterdir() if p.is_file())
 print("index.html:", round(len(new_html.encode()) / 1048576, 2), "МБ")
 print("app.js    :", round(len(js.encode()) / 1048576, 2), "МБ")
-print("файлов в deploy:", len(os.listdir(OUT)), "| всего", round(total / 1048576, 2), "МБ")
+print("файлов в deploy:", len(list(OUT.iterdir())), "| всего", round(total / 1048576, 2), "МБ")
 print("осталось инлайновых <script>:", len(re.findall(r"<script(?![^>]*src=)", new_html)))
