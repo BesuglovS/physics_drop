@@ -62,6 +62,23 @@ for name in ("school_physics.html", "school_physics.md", "report.md", "AUDIT.md"
     txt = txt.replace("report.html", "index.html")
     p.write_text(txt, encoding="utf-8")
 
+# school_physics.html тоже содержит inline <script>, а CSP сайта разрешает
+# только script-src 'self'. Выносим его в school.js и добавляем версию.
+school_path = OUT / "school_physics.html"
+school_html = school_path.read_text(encoding="utf-8")
+sm = re.search(r"<script>(.*?)</script>", school_html, re.S)
+assert sm, "inline-скрипт school_physics.html не найден"
+school_js = sm.group(1)
+(OUT / "school.js").write_text(school_js, encoding="utf-8")
+school_ver = hashlib.sha256(school_js.encode("utf-8")).hexdigest()[:12]
+school_html = (
+    school_html[:sm.start()]
+    + f'<script src="school.js?v={school_ver}"></script>'
+    + school_html[sm.end():]
+)
+assert not re.search(r"<script(?![^>]*\bsrc=)", school_html), "inline <script> остался"
+school_path.write_text(school_html, encoding="utf-8")
+
 total = sum(p.stat().st_size for p in OUT.iterdir() if p.is_file())
 print("index.html:", round(len(new_html.encode()) / 1048576, 2), "МБ")
 print("app.js    :", round(len(js.encode()) / 1048576, 2), "МБ")
